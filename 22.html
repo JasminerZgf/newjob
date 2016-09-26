@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+        #box {
+            width: 100px;
+            height: 100px;
+            background: green;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <script type="text/javascript">
+    // function fn(ev){
+    //     console.log(ev);
+    // }
+    // fn(6);
+
+    // document.onclick = fn;
+    window.onload = function(){
+        var box = document.getElementById('box');
+        var timer = null;
+        var obj = {};
+        document.onkeydown = function(ev){
+            obj[ev.keyCode] = true;
+            console.log(obj);
+            if(timer){
+                return;
+            }
+
+            
+            
+            timer = setInterval(function(){
+
+                if(obj[39]){
+                    box.style.left = box.offsetLeft + 10 + 'px';
+
+                }if(obj[40]){
+                    box.style.top = box.offsetTop + 10 + 'px';
+                }if(obj[37]){
+                    box.style.left = box.offsetLeft - 10 + 'px';
+                }if(obj[38]){
+                    box.style.top = box.offsetTop - 10 + 'px';
+                }
+
+            }, 16);
+
+
+        }
+        document.onkeyup = function(ev){
+            clearInterval(timer);
+            timer =null;
+            obj[ev.keyCode] = false;
+        }
+
+    }
+
+
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>
